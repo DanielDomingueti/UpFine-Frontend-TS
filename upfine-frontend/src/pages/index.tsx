@@ -1,14 +1,13 @@
 // import Head from 'next/head'
 // import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react'
 // import styles from '@/styles/Home.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import Header from '../components/Header';
-
-
-
+import { getEmpresaData, postData } from '@/utils/FetchAPI';
+ 
 const inter = Inter({ subsets: ['latin'] })
 
 interface Empresa {
@@ -43,6 +42,17 @@ export default function Home () {
   const [empresasSelecionadas, setEmpresasSelecionadas] = useState<Empresa[]>([]);
   const [email, setEmail] = useState('');
 
+  const fetchData = async () => {
+    const result = await getEmpresaData();
+    SetMockEmpresas(result)
+  }
+
+  useEffect(() => {
+    // fetchData()
+  }, []);
+
+
+
   const handleEmpresaClick = (empresa: Empresa) => {
     const empresaJaSelecionada = empresasSelecionadas.find((emp) => emp.id === empresa.id);
 
@@ -63,10 +73,14 @@ export default function Home () {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    
     console.log(`E-mail cadastrado: ${email}`);
     console.log('Empresas selecionadas', empresasSelecionadas);
-    
+    const corporationIds = empresasSelecionadas.map((empresa) => empresa.id);
+    const payload = {
+      email: email,
+      corporationIds: corporationIds
+    }
+    // postData(payload)
     setEmail('');
   };
 
