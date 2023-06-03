@@ -7,12 +7,13 @@
 
 /* EMPRESAS */
 #box-empresas {
-  background-color: #F5F5F5;
+  background-color: #e4e2e2;
   padding: 30px;
   display: flex;
   flex-direction: column;
   max-width: 800px;
   margin: 50px auto 50px auto;
+  border-radius: 5px;
 }
 
 .card {
@@ -29,6 +30,10 @@
 .card.selected {
   background-color: #007BFF;
   color: #FFFFFF;
+}
+
+.card.selected svg {
+  color: #343A40;
 }
 
 .icon {
