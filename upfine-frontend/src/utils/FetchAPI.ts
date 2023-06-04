@@ -19,6 +19,7 @@ interface Payload {
 async function getEmpresaData(): Promise<Empresa[]> {
   try {
     const response: AxiosResponse<Empresa[]> = await axios.get<Empresa[]>(`http://localhost:8080/corporations`);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Erro ao obter dados da empresa:', error);

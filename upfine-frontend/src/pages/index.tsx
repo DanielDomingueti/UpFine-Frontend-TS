@@ -48,7 +48,7 @@ export default function Home () {
   }
 
   useEffect(() => {
-    // fetchData()
+    fetchData()
   }, []);
 
 
@@ -80,7 +80,8 @@ export default function Home () {
       email: email,
       corporationIds: corporationIds
     }
-    // postData(payload)
+    console.log(payload);
+    postData(payload)
     setEmail('');
   };
 
